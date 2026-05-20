@@ -1,0 +1,21 @@
+{
+  "name": "codebuds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttiwari13/codebuddies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ttiwari13/codebuddies/issues"
+  },
+  "homepage": "https://github.com/ttiwari13/codebuddies#readme"
+}

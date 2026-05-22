@@ -1,19 +1,27 @@
 const socket=new WebSocket('ws://localhost:8080'); // stores live connection object
+const params= new URLSearchParams(window.location.search);
+const roomId=params.get('room');
 const questionEdit=document.getElementById('question');
 const codeEdit=document.getElementById('code');
-const role='candidate';
+const role=params.get('role');
 socket.onopen=()=>{
+    socket.send(JSON.stringify({
+        type:'join',
+        roomId
+    }))
     console.log('Connected to the server');
 
 };
 let lastsent=0;
 const delay=500;
+//taking input from candidate and sending to server
 if(role==='candidate'){
     questionEdit.disabled=true;
     codeEdit.addEventListener('input',()=>{
        const now=Date.now();
        if(now-lastsent>=delay){
           socket.send(JSON.stringify({
+            roomId,
             type:'code',
             value:codeEdit.value
          }));
@@ -26,7 +34,8 @@ if(role==='interviewer'){
     questionEdit.addEventListener('input',()=>{
        const now = Date.now();
        if(now-lastsent>=delay){
-          socket.send(JSON.stringify({
+          socket.send(JSON.stringify({ //Send data from client → server
+            roomId,
             type: 'question',
             value: questionEdit.value
          }));
@@ -34,6 +43,8 @@ if(role==='interviewer'){
        }
     });
 }
+//server sends data to client
+
 socket.onmessage=(event)=>{
     const data=JSON.parse(event.data);
     if(data.type==='code'){

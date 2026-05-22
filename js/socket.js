@@ -47,11 +47,13 @@ if(role==='interviewer'){
 
 socket.onmessage=(event)=>{
     const data=JSON.parse(event.data);
-    if(data.type==='code'){
+    if(data.type==='code' && codeEdit.value!==data.value){
         codeEdit.value=data.value;
+        roomState[data.roomId].code = data.value;
     }
-    if(data.type==='question'){
+    if(data.type==='question' && questionEdit.value!==data.value){
         questionEdit.value=data.value;
+        roomState[data.roomId].question = data.value;
     }
     console.log('Message from server:',event.data);
 };

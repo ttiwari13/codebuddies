@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/ttiwari13/codebuddies/issues"
   },
-  "homepage": "https://github.com/ttiwari13/codebuddies#readme"
+  "homepage": "https://github.com/ttiwari13/codebuddies#readme",
+  "dependencies": {
+    "ws": "^8.20.1"
+  }
 }
